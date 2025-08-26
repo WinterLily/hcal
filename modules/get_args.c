@@ -6,63 +6,6 @@
 
 #define NUM_OPERATIONS (sizeof(operations)) / (sizeof(operations[0]))
 
-char* USAGE_ERROR=
-"Usage: hcal <operation> []<values>\n"
-"\n"
-"Operations: \n"
-"    add     -   add two or more hex values together \n"
-"    sub     -   subtract one or more hex values from each other \n"
-"    div     -   divide one or more hex values by one another \n"
-"    mul     -   multiply two or more hex values together \n"
-"    ascii   -   ascii representation of given hex(s)s\n";
-
-// enum for viable operation args s
-typedef enum {
-    OP_ADD,
-    OP_SUB,
-    OP_DIV,
-    OP_MULT,
-    OP_XOR,
-    OP_ASCII
-} operation_t;
-
-// struct for parsed args
-typedef struct {
-    operation_t op;
-    uint64_t *values; // number of input hex values
-    int count;        // number of values
-} parsed_args_t;
-
-// operation to input mapping
-struct op_mapping {
-    char* name;
-    operation_t op;
-} operations[] = {
-    {"add",     OP_ADD},
-    {"sub",     OP_SUB},
-    {"div",     OP_DIV},
-    {"mult",    OP_MULT},
-    {"xor",     OP_XOR},
-    {"ascii",   OP_ASCII}
-};
-
-// map of operation enums to strings for easier reverse lookups
-char* operation_names[] = {
-    [OP_ADD] = "add",
-    [OP_SUB] = "sub",
-    [OP_DIV] = "div",
-    [OP_MULT] = "mult",
-    [OP_XOR] = "xor",
-    [OP_ASCII] = "ascii"
-};
-
-// print usage error and fail
-int error_fail(char* error_message) {
-    printf("ERROR - %s\n", error_message);
-    printf("%s", USAGE_ERROR);
-    exit(1);
-}
-
 // main arg parser
 parsed_args_t parse_args(int argc, char *argv[]) {
 

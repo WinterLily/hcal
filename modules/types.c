@@ -38,12 +38,12 @@ char* operation_names[] = {
     [OP_ASCII] = "ascii"
 };
 
-// union for whole number arithmetic operations 
-typedef struct { 
+// union for whole number arithmetic operations
+typedef struct {
     union {
         int64_t signed_val;
         uint64_t unsigned_val;
     };
     bool is_negative;
-} whole_number_calc_result_t
+} whole_number_calc_result_t;
 
