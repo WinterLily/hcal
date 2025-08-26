@@ -14,7 +14,7 @@
 #include "modules/operations/xor.c"
 #include "modules/operations/mult.c"
 #include "modules/operations/div.c"
-
+#include "modules/operations/ascii.c"
 
 
 int main(int argc, char *argv[]) {
@@ -38,6 +38,12 @@ int main(int argc, char *argv[]) {
             break;
         case OP_DIV: 
             div_operation(parsed_args.values, parsed_args.count);
+            break;
+        case OP_ASCII: 
+            ascii_operation(parsed_args.values, parsed_args.count);
+            break;
+        default:
+            error_fail("Invalid method");
             break;
     }
 
